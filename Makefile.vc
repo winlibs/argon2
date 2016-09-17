@@ -13,7 +13,9 @@ OUT_LIB_NAME = argon2_a.lib
 !endif
 
 
-all:
+all: argon2_a
+
+argon2_a:
 	$(CC) $(CFLAGS) /c src\argon2.c src\core.c src\blake2\blake2b.c src\thread.c src\encoding.c src\ref.c
 	$(AR) /OUT:$(OUT_LIB_NAME) argon2.obj core.obj blake2b.obj thread.obj encoding.obj ref.obj
 

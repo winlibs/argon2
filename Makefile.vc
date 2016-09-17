@@ -8,7 +8,7 @@ CFLAGS =  /nologo /Isrc /Isrc\blake2 /Iinclude /W3 /D _WINDOWS /D WIN32
 CFLAGS = $(CFLAGS) /D _DEBUG /Od /Z7 /RTC1 /MDd
 OUT_LIB_NAME = argon2_a_debug.lib
 !else
-CFLAGS = $(CFLAGS) /D NDebug /D NDEBUG /guard:cf /Zc:inline /Gw /MP /MD /Ox /GF /GL /Zi /Fdargon2_a.pdb
+CFLAGS = $(CFLAGS) /D NDebug /D NDEBUG /guard:cf /Zc:inline /Gw /MP /MD /Ox /GF /Zi /Fdargon2_a.pdb
 OUT_LIB_NAME = argon2_a.lib
 !endif
 

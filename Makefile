@@ -1,10 +1,18 @@
 #
-# Argon2 source code package
-# 
-# This work is licensed under a Creative Commons CC0 1.0 License/Waiver.
-# 
-# You should have received a copy of the CC0 Public Domain Dedication along with
-# this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+# Argon2 reference source code package - reference C implementations
+#
+# Copyright 2015
+# Daniel Dinu, Dmitry Khovratovich, Jean-Philippe Aumasson, and Samuel Neves
+#
+# You may use this work under the terms of a Creative Commons CC0 1.0 
+# License/Waiver or the Apache Public License 2.0, at your option. The terms of
+# these licenses can be found at:
+#
+# - CC0 1.0 Universal : http://creativecommons.org/publicdomain/zero/1.0
+# - Apache 2.0        : http://www.apache.org/licenses/LICENSE-2.0
+#
+# You should have received a copy of both of these licenses along with this
+# software. If not, they may be obtained at the above URLs.
 #
 
 RUN = argon2
@@ -53,6 +61,10 @@ ifeq ($(KERNEL_NAME), Darwin)
 	LIB_EXT := dylib
 	LIB_CFLAGS := -dynamiclib -install_name @rpath/lib$(LIB_NAME).$(LIB_EXT)
 endif
+ifeq ($(findstring CYGWIN, $(KERNEL_NAME)), CYGWIN)
+	LIB_EXT := dll
+	LIB_CFLAGS := -shared -Wl,--out-implib,lib$(LIB_NAME).$(LIB_EXT).a
+endif
 ifeq ($(findstring MINGW, $(KERNEL_NAME)), MINGW)
 	LIB_EXT := dll
 	LIB_CFLAGS := -shared -Wl,--out-implib,lib$(LIB_NAME).$(LIB_EXT).a
@@ -76,11 +88,25 @@ endif
 
 LIB_SH := lib$(LIB_NAME).$(LIB_EXT)
 LIB_ST := lib$(LIB_NAME).a
+LIBRARIES = $(LIB_SH) $(LIB_ST)
+HEADERS = include/argon2.h
 
-.PHONY: clean dist format $(GENKAT)
+INSTALL = install
+
+DESTDIR =
+PREFIX = /usr
+INCLUDE_REL = include
+LIBRARY_REL = lib
+BINARY_REL = bin
+
+INST_INCLUDE = $(DESTDIR)$(PREFIX)/$(INCLUDE_REL)
+INST_LIBRARY = $(DESTDIR)$(PREFIX)/$(LIBRARY_REL)
+INST_BINARY = $(DESTDIR)$(PREFIX)/$(BINARY_REL)
+
+.PHONY: clean dist format $(GENKAT) all install
 
 all: clean $(RUN) libs 
-libs: $(LIB_SH) $(LIB_ST)
+libs: $(LIBRARIES)
 
 $(RUN):	        $(SRC) $(SRC_RUN)
 		$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
@@ -110,12 +136,12 @@ dist:
 		cd ..; \
 		tar -c --exclude='.??*' -z -f $(DIST)-`date "+%Y%m%d"`.tgz $(DIST)/*
 
-test:   $(SRC) src/test.c
+test:           $(SRC) src/test.c
 		$(CC) $(CFLAGS)  -Wextra -Wno-type-limits $^ -o testcase
 		@sh kats/test.sh
 		./testcase
 
-testci:   $(SRC) src/test.c
+testci:         $(SRC) src/test.c
 		$(CC) $(CI_CFLAGS) $^ -o testcase
 		@sh kats/test.sh
 		./testcase
@@ -125,3 +151,11 @@ testci:   $(SRC) src/test.c
 format:
 		clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4}" \
 			-i include/*.h src/*.c src/*.h src/blake2/*.c src/blake2/*.h
+
+install: $(RUN) libs
+	$(INSTALL) -d $(INST_INCLUDE)
+	$(INSTALL) $(HEADERS) $(INST_INCLUDE)
+	$(INSTALL) -d $(INST_LIBRARY)
+	$(INSTALL) $(LIBRARIES) $(INST_LIBRARY)
+	$(INSTALL) -d $(INST_BINARY)
+	$(INSTALL) $(RUN) $(INST_BINARY)

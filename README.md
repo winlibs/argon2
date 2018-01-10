@@ -54,7 +54,7 @@ results. `make install PREFIX=/usr` installs it to your system.
 on your system. To show usage instructions, run
 `./argon2 -h` as
 ```
-Usage:  ./argon2 [-h] salt [-i|-d|-id] [-t iterations] [-m memory] [-p parallelism] [-l hash length] [-e|-r]
+Usage:  ./argon2 [-h] salt [-i|-d|-id] [-t iterations] [-m memory] [-p parallelism] [-l hash length] [-e|-r] [-v (10|13)]
         Password is read from stdin
 Parameters:
         salt            The salt to use, at least 8 characters
@@ -67,6 +67,7 @@ Parameters:
         -l N            Sets hash output length to N bytes (default 32)
         -e              Output only encoded hash
         -r              Output only the raw bytes of the hash
+        -v (10|13)      Argon2 version (defaults to the most recent version, currently 13)
         -h              Print argon2 usage
 ```
 For example, to hash "password" using "somesalt" as a salt and doing 2
@@ -255,13 +256,17 @@ their documentation):
 * [OCaml](https://github.com/Khady/ocaml-argon2) by [@Khady](https://github.com/Khady)
 * [Python (native)](https://pypi.python.org/pypi/argon2), by [@flamewow](https://github.com/flamewow)
 * [Python (ffi)](https://pypi.python.org/pypi/argon2_cffi), by [@hynek](https://github.com/hynek)
+* [Python (ffi, with keyed hashing)](https://github.com/thusoy/porridge), by [@thusoy](https://github.com/thusoy)
+* [R](https://cran.r-project.org/package=argon2) by [@wrathematics](https://github.com/wrathematics)
 * [Ruby](https://github.com/technion/ruby-argon2) by [@technion](https://github.com/technion)
 * [Rust](https://github.com/quininer/argon2-rs) by [@quininer](https://github.com/quininer)
 * [C#/.NET CoreCLR](https://github.com/kmaragon/Konscious.Security.Cryptography) by [@kmaragon](https://github.com/kmaragon)
 * [Perl](https://github.com/Leont/crypt-argon2) by [@leont](https://github.com/Leont)
+* [mruby](https://github.com/Asmod4n/mruby-argon2) by [@Asmod4n](https://github.com/Asmod4n)
+* [Swift](https://github.com/ImKcat/CatCrypto) by [@ImKcat](https://github.com/ImKcat)
 
 
-## Test Suite
+## Test suite
 
 There are two sets of test suites. One is a low level test for the hash
 function, the other tests the higher level API. Both of these are built and

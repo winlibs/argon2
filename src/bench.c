@@ -4,7 +4,7 @@
  * Copyright 2015
  * Daniel Dinu, Dmitry Khovratovich, Jean-Philippe Aumasson, and Samuel Neves
  *
- * You may use this work under the terms of a Creative Commons CC0 1.0 
+ * You may use this work under the terms of a Creative Commons CC0 1.0
  * License/Waiver or the Apache Public License 2.0, at your option. The terms of
  * these licenses can be found at:
  *
@@ -45,7 +45,7 @@ static uint64_t rdtsc(void) {
 }
 
 /*
- * Benchmarks Argon2 with salt length 16, password length 16, t_cost 1,
+ * Benchmarks Argon2 with salt length 16, password length 16, t_cost 3,
    and different m_cost and threads
  */
 static void benchmark() {

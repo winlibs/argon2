@@ -4,7 +4,7 @@
  * Copyright 2015
  * Daniel Dinu, Dmitry Khovratovich, Jean-Philippe Aumasson, and Samuel Neves
  *
- * You may use this work under the terms of a Creative Commons CC0 1.0 
+ * You may use this work under the terms of a Creative Commons CC0 1.0
  * License/Waiver or the Apache Public License 2.0, at your option. The terms of
  * these licenses can be found at:
  *
@@ -15,7 +15,6 @@
  * software. If not, they may be obtained at the above URLs.
  */
 
-#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -116,8 +115,8 @@ void internal_kat(const argon2_instance_t *instance, uint32_t pass) {
                     : ARGON2_QWORDS_IN_BLOCK;
 
             for (j = 0; j < how_many_words; ++j)
-                printf("Block %.4u [%3u]: %016" PRIx64 "\n", i, j,
-                       instance->memory[i].v[j]);
+                printf("Block %.4u [%3u]: %016llx\n", i, j,
+                       (unsigned long long)instance->memory[i].v[j]);
         }
     }
 }

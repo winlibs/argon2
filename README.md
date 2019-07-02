@@ -191,9 +191,9 @@ int main(void)
 }
 ```
 
-To use Argon2d instead of Argon2i call `argon2d_hash` instead of
-`argon2i_hash` using the high-level API, and `argon2d` instead of
-`argon2i` using the low-level API. Similarly for Argon2id, call `argond2id_hash`
+To use Argon2d instead of Argon2i call `argon2d_hash_raw` instead of
+`argon2i_hash_raw` using the high-level API, and `argon2d` instead of
+`argon2i` using the low-level API. Similarly for Argon2id, call `argon2id_hash_raw`
 and `argon2id`.
 
 To produce the crypt-like encoding rather than the raw hash, call
@@ -244,13 +244,15 @@ Bindings are available for the following languages (make sure to read
 their documentation):
 
 * [Elixir](https://github.com/riverrun/argon2_elixir) by [@riverrun](https://github.com/riverrun)
+* [Erlang](https://github.com/ergenius/eargon2) by [@ergenius](https://github.com/ergenius)
 * [Go](https://github.com/tvdburgt/go-argon2) by [@tvdburgt](https://github.com/tvdburgt)
-* [Haskell](https://hackage.haskell.org/package/argon2-1.0.0/docs/Crypto-Argon2.html) by [@ocharles](https://github.com/ocharles)
+* [Haskell](https://hackage.haskell.org/package/argon2) by [@hvr](https://github.com/hvr)
 * [JavaScript (native)](https://github.com/ranisalt/node-argon2), by [@ranisalt](https://github.com/ranisalt)
 * [JavaScript (native)](https://github.com/jdconley/argon2themax), by [@jdconley](https://github.com/jdconley)
 * [JavaScript (ffi)](https://github.com/cjlarose/argon2-ffi), by [@cjlarose](https://github.com/cjlarose)
 * [JavaScript (browser)](https://github.com/antelle/argon2-browser), by [@antelle](https://github.com/antelle)
 * [JVM](https://github.com/phxql/argon2-jvm) by [@phXql](https://github.com/phxql)
+* [JVM (with keyed hashing)](https://github.com/kosprov/jargon2-api) by [@kosprov](https://github.com/kosprov)
 * [Lua (native)](https://github.com/thibaultCha/lua-argon2) by [@thibaultCha](https://github.com/thibaultCha)
 * [Lua (ffi)](https://github.com/thibaultCha/lua-argon2-ffi) by [@thibaultCha](https://github.com/thibaultCha)
 * [OCaml](https://github.com/Khady/ocaml-argon2) by [@Khady](https://github.com/Khady)
@@ -260,6 +262,7 @@ their documentation):
 * [R](https://cran.r-project.org/package=argon2) by [@wrathematics](https://github.com/wrathematics)
 * [Ruby](https://github.com/technion/ruby-argon2) by [@technion](https://github.com/technion)
 * [Rust](https://github.com/quininer/argon2-rs) by [@quininer](https://github.com/quininer)
+* [Rust](https://docs.rs/argonautica/) by [@bcmyers](https://github.com/bcmyers/)
 * [C#/.NET CoreCLR](https://github.com/kmaragon/Konscious.Security.Cryptography) by [@kmaragon](https://github.com/kmaragon)
 * [Perl](https://github.com/Leont/crypt-argon2) by [@leont](https://github.com/Leont)
 * [mruby](https://github.com/Asmod4n/mruby-argon2) by [@Asmod4n](https://github.com/Asmod4n)
